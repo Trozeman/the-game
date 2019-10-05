@@ -20,11 +20,9 @@ const initialState = {
 
 const store = configureStore(initialState);
 
+window.store = store;
+
 function App() {
-/*    setTimeout(()=>{
-        // let q = Math.floor(Math.random() * 9);
-        // store.dispatch({type: 'SET_ACTIVE_CELL', index:q});
-    }, 2000);*/
   return (
     <Provider store={store}>
         <GridContainer store={store} />

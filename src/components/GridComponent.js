@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Cell from "./CellComponent";
 import {bindActionCreators} from "redux";
-import {getCell} from "../store/actions/cellActions";
+import {getCell} from "../store/actions/CellActions";
 import Options from "../containers/OptionsContainer";
 
 
@@ -68,7 +68,7 @@ class Game extends React.Component {
         return (
             <div className={'game'}>
                 <div>
-                <Options />
+                    <Options />
                     {this.rows()}
                 </div>
 

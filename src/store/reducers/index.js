@@ -1,12 +1,12 @@
-import GameReducer from './game';
-import CellReducer from "./cell";
+import GameReducer from './GameReducer';
+import CellReducer from "./CellReducer";
 import { combineReducers } from "redux";
 
 const index = combineReducers(
     {
         game: GameReducer,
-        score: GameReducer,
-        size: GameReducer,
+        score: CellReducer,
+        size: CellReducer,
         activeCell: CellReducer,
     }
 );

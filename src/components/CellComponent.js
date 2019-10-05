@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from "redux";
-import {getCell} from '../store/actions/cellActions';
+import {getCell} from '../store/actions/CellActions';
 
 class CellComponent extends React.Component {
     timeout = null;

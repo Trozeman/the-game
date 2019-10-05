@@ -4,19 +4,15 @@ import {connect} from "react-redux";
 
 
 class optionsContainer extends React.Component{
-
     constructor(props) {
         super(props);
     }
-
     render() {
-
         const {store} = this.props;
-        // console.log(store);
         return (
-            <div>
+
                 <OptionsComponent store={store}/>
-            </div>
+
         )
     }
 }
@@ -27,4 +23,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, null)(optionsContainer);
-// export default gridContainer;

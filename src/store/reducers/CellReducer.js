@@ -1,4 +1,4 @@
-const cell = (state = {}, action) => {
+const cellReducer = (state = {}, action) => {
     switch (action.type) {
         case 'SET_ACTIVE_CELL':
             return action.index;
@@ -9,4 +9,4 @@ const cell = (state = {}, action) => {
     }
 };
 
-export default cell;
+export default cellReducer;
