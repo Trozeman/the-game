@@ -20,7 +20,6 @@ class RowComponent extends React.Component{
     constructor(props){
         super(props);
         this.items = new Cells();
-        console.log(this.state)
     }
 
     generateItems(){
@@ -28,8 +27,6 @@ class RowComponent extends React.Component{
                 this.items.addItem();
             }
     }
-
-
     render() {
         this.generateItems();
         return (

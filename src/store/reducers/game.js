@@ -18,4 +18,4 @@ const game = (state = [], action) => {
     }
 };
 
-export default game
+export default game;

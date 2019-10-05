@@ -1,0 +1,16 @@
+.wrapper {
+    display: flex;
+    background: rgba(20, 20, 20, 0.6);
+    padding: 20px;
+    font-size: 20px;
+    flex-direction: column;
+}
+.wrapper--input{
+
+}
+
+.error {
+    background-color: red;
+    /*background: rgba(20, 20, 20, 0.6);*/
+
+}

@@ -12,8 +12,16 @@ code {
     monospace;
 }
 
+.game{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 100vh;
+}
 .row{
   display: flex;
+  margin: 0 auto;
 }
 .row *{
   background: #cecece;
@@ -21,8 +29,18 @@ code {
 h1 {
   padding: 10px;
   margin: 3px;
+  min-width: 60px;
+  min-height: 60px;
+  text-align: center;
 }
-.active {
+.cpu {
   background: red;
 
+}
+.player {
+  background: green;
+
+}
+.ready {
+  background: blue;
 }

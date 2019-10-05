@@ -1,34 +1,78 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from "redux";
+import {getCell} from '../store/actions/cellActions';
 
-
-class CellComponent extends React.Component{
-    constructor(props){
+class CellComponent extends React.Component {
+    timeout = null;
+    constructor(props) {
         super(props);
         this.state = {
-            status: false,
-            winner: null
+
         };
     }
 
-    clickHandler(e) {
-        console.log(e.target);
-        this.setState(() => ({
-            status: true
-        }));
-        if (this.state.status) {
-            console.log('status = True');
+    getWinner() {
+        // console.log(this);
+        let state = '';
+        if (this.props.cell && this.props.cell ===  this.props.index ) {
+            state = 'ready'
+        }else {
+            if (this.state.winner) {
+                clearTimeout(this.timeout);
+                switch (this.state.winner) {
+                    case 'player':{
+                        state = 'player';
+                        break;
+                    }
+                    default:{
+                        state = 'cpu';
+                    }
+
+                }
+            }
         }
-        e.target.classList.toggle('active');
+        return state
     }
+
+
+
+    checkStat = () => {
+        // this.props.select(this.props, {action:"GET_CELL",index: 1});
+
+        console.log(this.props);
+
+        if (this.props.cell === this.props.index ) {
+            clearTimeout(this.timeout);
+            this.setState({ready: false, winner: 'player'});
+        }
+    };
+
+
+
     render() {
-        return (
-            <h1 onClick={(e) => {
-                this.clickHandler(e)
-            }}>
-               {this.props.count}
-            </h1>
-        );
+        if (this.props.cell && this.props.cell === this.props.index) {
+            this.timeout = setTimeout(()=>{
+                this.setState({ready: false, winner: 'cpu'});
+                clearTimeout(this.timeout);
+            }, 3000);
+        }
+        return (<h1 ref={this.props.index} className={this.getWinner()} onClick={this.checkStat}>{this.props.index}
+        </h1>);
+
     }
 }
 
-export default CellComponent;
+
+
+const mapStateToProps = (state) => {
+    return ({
+        cell: state.activeCell
+    });
+};
+const matchDispatchToProps = (dispatch) => {
+    return bindActionCreators({select:getCell}, dispatch);
+};
+
+
+export default connect(mapStateToProps, matchDispatchToProps)(CellComponent);
