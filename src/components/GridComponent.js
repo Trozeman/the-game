@@ -1,8 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Cell from "./CellComponent";
-import {bindActionCreators} from "redux";
-import {getCell} from "../store/actions/CellActions";
 import Options from "../containers/OptionsContainer";
 
 
@@ -10,29 +8,23 @@ class Game extends React.Component {
     timeout = 500;
 
     cells = (i) => {
-        let w = [];
-
-        console.log( "q - ", i * this.props.game.size);
-        console.log( "Size - ", (this.props.game.size * i) + this.props.game.size);
+        let cells = [];
 
         for (let q = i * this.props.game.size; q < (this.props.game.size * i) + this.props.game.size; q++) {
-            w.push(<Cell key={q} index={q}/>);
+            cells.push(<Cell key={q} index={q}/>);
         }
-
-        return w;
+        return cells;
     };
+
     rows = () => {
-        console.log(this.props.game.size);
-        let s = [];
+        let rows = [];
         for (let q = 0; q < this.props.game.size; q++) {
-            s.push(
+            rows.push(
                 <Rows key={q}>
                     {this.cells(q)}
                 </Rows>);
         }
-        console.log(s);
-        return s;
-
+        return rows;
     };
 
     handleDrawer = (index) => {
@@ -57,17 +49,15 @@ class Game extends React.Component {
     render() {
         return (
             <div className={'game'}>
-                <div>
-                    <Options/>
+                <div className={'game--wrapper'}>
                     {this.rows()}
                 </div>
-
+                <Options/>
             </div>
         );
     }
 
 }
-
 
 const Rows = (props) => {
     return (
@@ -78,16 +68,12 @@ const Rows = (props) => {
 };
 
 
-// export default Game;
-
 const mapStateToProps = (state) => {
     return ({
         data: state
     });
 };
-const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({select: getCell}, dispatch);
-};
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Game);
+
+export default connect(mapStateToProps, null)(Game);

@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 const initialState = {
     game: {
         user: '',
-        size: 3,
+        size: 0,
         difficulty: 1,
         onProgress: false
     },

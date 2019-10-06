@@ -3,18 +3,20 @@ const gameReducer = (state = {}, action) => {
     switch (action.type) {
         case 'START_GAME':
             return {
-                ...state.game,
-                size: action.size,
-                difficulty: action.difficulty,
-                onProgress: action.progress
+                ...state,
+                onProgress: action.onProgress
             };
         case 'SET_USER':
             return {
                 ...state,
                 user: action.user
             };
+        case 'SET_GAME_DIFFICULTY':
+            return {
+                ...state,
+                difficulty: action.difficulty
+            };
         case 'SET_BORD_SIZE':
-            console.log(action);
             return {
                 ...state,
                 size: action.size

@@ -6,7 +6,6 @@ const index = combineReducers(
     {
         game: GameReducer,
         score: CellReducer,
-        size: CellReducer,
         activeCell: CellReducer,
     }
 );

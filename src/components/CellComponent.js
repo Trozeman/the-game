@@ -5,27 +5,25 @@ import {getCell} from '../store/actions/CellActions';
 
 class CellComponent extends React.Component {
     timeout = null;
+
     constructor(props) {
         super(props);
-        this.state = {
-
-        };
+        this.state = {};
     }
 
     getWinner() {
-        // console.log(this);
         let state = '';
-        if (this.props.cell && this.props.cell ===  this.props.index ) {
+        if (this.props.cell && this.props.cell === this.props.index) {
             state = 'ready'
-        }else {
+        } else {
             if (this.state.winner) {
                 clearTimeout(this.timeout);
                 switch (this.state.winner) {
-                    case 'player':{
+                    case 'player': {
                         state = 'player';
                         break;
                     }
-                    default:{
+                    default: {
                         state = 'cpu';
                     }
 
@@ -36,33 +34,33 @@ class CellComponent extends React.Component {
     }
 
 
-
     checkStat = () => {
         // this.props.select(this.props, {action:"GET_CELL",index: 1});
 
         console.log(this.props);
-
-        if (this.props.cell === this.props.index ) {
+        if (this.props.cell === this.props.index) {
             clearTimeout(this.timeout);
             this.setState({ready: false, winner: 'player'});
         }
     };
 
 
-
     render() {
         if (this.props.cell && this.props.cell === this.props.index) {
-            this.timeout = setTimeout(()=>{
+            this.timeout = setTimeout(() => {
                 this.setState({ready: false, winner: 'cpu'});
                 clearTimeout(this.timeout);
             }, 3000);
         }
-        return (<h1 ref={this.props.index} className={this.getWinner()} onClick={this.checkStat}>{this.props.index}
-        </h1>);
+        return (<h1
+                ref={this.props.index}
+                className={this.getWinner()}
+                onClick={this.checkStat}>
+                    {this.props.index}
+                </h1>);
 
     }
 }
-
 
 
 const mapStateToProps = (state) => {
@@ -71,7 +69,7 @@ const mapStateToProps = (state) => {
     });
 };
 const matchDispatchToProps = (dispatch) => {
-    return bindActionCreators({select:getCell}, dispatch);
+    return bindActionCreators({select: getCell}, dispatch);
 };
 
 

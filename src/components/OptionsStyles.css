@@ -1,4 +1,8 @@
 .wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     background: rgba(20, 20, 20, 0.6);
     padding: 20px;
@@ -15,6 +19,9 @@
 
 }
 
+button{
+    cursor: pointer;
+}
 button, .name{
     margin-top: 20px;
     padding: 2px 8px;
