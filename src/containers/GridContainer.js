@@ -1,14 +1,39 @@
 import React from 'react';
 import GridComponent from "../components/GridComponent";
-import {UpdateUserName} from "../store/actions/GameActions"
+import {UpdateUserName, UpdateActiveCell} from "../store/actions/GameActions"
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
+import GameController from '../game-controller'
 
 
 class gridContainer extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.timer = null;
+        this.cells =[];
+        this.controller = new GameController();
+
+    }
+
+    startLoop = () => {
+
+        if (this.props.game.onProgress) {
+            this.timer = setInterval(() => {
+                    if(this.controller.cellsIndexes.length <= 0 ){
+                        clearInterval(this.timer);
+                        return;
+                    }
+                    this.props.setActiveCell({type: "SET_ACTIVE_CELL", index: this.controller.cell()});
+                }
+                , 1000);
+        }
+    };
+
     render() {
+        this.controller.setup(this.props.game.size);
         const {user} = this.props.game;
+        this.startLoop();
         return (
             <div>
                 <h1>{user}</h1>
@@ -29,7 +54,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-        updateUserName: UpdateUserName
+        updateUserName: UpdateUserName,
+        setActiveCell: UpdateActiveCell
     }, dispatch);
 };
 

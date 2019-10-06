@@ -11,7 +11,7 @@ class Game extends React.Component {
         let cells = [];
 
         for (let q = i * this.props.game.size; q < (this.props.game.size * i) + this.props.game.size; q++) {
-            cells.push(<Cell key={q} index={q}/>);
+            cells.push(<Cell key={q} index={q+1}/>);
         }
         return cells;
     };

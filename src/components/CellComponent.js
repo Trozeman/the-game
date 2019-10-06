@@ -8,7 +8,9 @@ class CellComponent extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            active: false,
+        }
     }
 
     getWinner() {
@@ -35,9 +37,6 @@ class CellComponent extends React.Component {
 
 
     checkStat = () => {
-        // this.props.select(this.props, {action:"GET_CELL",index: 1});
-
-        console.log(this.props);
         if (this.props.cell === this.props.index) {
             clearTimeout(this.timeout);
             this.setState({ready: false, winner: 'player'});
@@ -46,7 +45,7 @@ class CellComponent extends React.Component {
 
 
     render() {
-        if (this.props.cell && this.props.cell === this.props.index) {
+        if (this.props.cell === this.props.index && !this.state.ready) {
             this.timeout = setTimeout(() => {
                 this.setState({ready: false, winner: 'cpu'});
                 clearTimeout(this.timeout);

@@ -22,11 +22,18 @@ const StartGame = (state) => {
         onProgress: state.onProgress
     }
 };
+const UpdateActiveCell = (state) => {
+    return{
+        type: "SET_ACTIVE_CELL",
+        index: state.index
+    }
+};
 
 
 export {
     UpdateUserName,
     UpdateGameSize,
     UpdateGameDifficulty,
-    StartGame
+    StartGame,
+    UpdateActiveCell
 };
