@@ -47,4 +47,5 @@ h1 {
 }
 .ready {
   background: blue;
+  cursor: pointer;
 }

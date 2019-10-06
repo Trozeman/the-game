@@ -2,10 +2,14 @@
   "name": "the-game",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:4000",
   "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^1.19.3",
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
     "react-redux": "^7.1.1",
+    "react-router-dom": "^5.1.2",
     "react-scripts": "3.1.2",
     "react-select": "^3.0.8",
     "react-thunk": "^1.0.0",
@@ -14,6 +18,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "server": "node server",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

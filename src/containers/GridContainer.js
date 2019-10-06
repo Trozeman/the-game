@@ -11,22 +11,19 @@ class gridContainer extends React.Component {
     constructor(props) {
         super(props);
         this.timer = null;
-        this.cells =[];
         this.controller = new GameController();
 
     }
 
     startLoop = () => {
-
         if (this.props.game.onProgress) {
             this.timer = setInterval(() => {
-                    if(this.controller.cellsIndexes.length <= 0 ){
+                    if (this.controller.cellsIndexes.length <= 0) {
                         clearInterval(this.timer);
                         return;
                     }
                     this.props.setActiveCell({type: "SET_ACTIVE_CELL", index: this.controller.cell()});
-                }
-                , 1000);
+                }, 1000);
         }
     };
 
