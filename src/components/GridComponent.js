@@ -7,45 +7,36 @@ import Options from "../containers/OptionsContainer";
 
 
 class Game extends React.Component {
-    grid = [];
     timeout = 500;
-
-    constructor(props){
-        super(props);
-        this.state = props.store.getState();
-    }
-
-
-    generate() {
-        if(!this.qwe){
-            for (let i = 1; i < this.props.data.game.size * this.props.data.game.size +1; i++) {
-                this.grid.push(i)
-            }
-            this.qwe = true
-        }
-    }
 
     cells = (i) => {
         let w = [];
-        let s = i * this.props.data.game.size +1;
-        for (let q = s; q < (this.props.data.game.size * i) + this.props.data.game.size +1; q++) {
+
+        console.log( "q - ", i * this.props.game.size);
+        console.log( "Size - ", (this.props.game.size * i) + this.props.game.size);
+
+        for (let q = i * this.props.game.size; q < (this.props.game.size * i) + this.props.game.size; q++) {
             w.push(<Cell key={q} index={q}/>);
         }
+
         return w;
     };
     rows = () => {
-        let w = [];
-        for (let q = 0; q < this.props.data.game.size; q++) {
-            w.push(
+        console.log(this.props.game.size);
+        let s = [];
+        for (let q = 0; q < this.props.game.size; q++) {
+            s.push(
                 <Rows key={q}>
                     {this.cells(q)}
                 </Rows>);
         }
-        return w;
+        console.log(s);
+        return s;
+
     };
 
     handleDrawer = (index) => {
-            this.props.store.dispatch({type: 'SET_ACTIVE_CELL', index});
+        // this.props.store.dispatch({type: 'SET_ACTIVE_CELL', index});
     };
 
     startLoop = () => {
@@ -53,7 +44,7 @@ class Game extends React.Component {
             () => {
                 let q = Math.floor(Math.random() * this.grid.length);
                 this.handleDrawer(this.grid[q]);
-                this.grid.splice(q,1);
+                this.grid.splice(q, 1);
                 console.log(this.grid);
             }
             , this.timeout);
@@ -64,11 +55,10 @@ class Game extends React.Component {
     };
 
     render() {
-        this.generate();
         return (
             <div className={'game'}>
                 <div>
-                    <Options />
+                    <Options/>
                     {this.rows()}
                 </div>
 
@@ -96,7 +86,7 @@ const mapStateToProps = (state) => {
     });
 };
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({select:getCell}, dispatch);
+    return bindActionCreators({select: getCell}, dispatch);
 };
 
 

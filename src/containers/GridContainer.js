@@ -7,10 +7,6 @@ import {bindActionCreators} from "redux";
 
 
 class gridContainer extends React.Component{
-    constructor(props) {
-        super(props);
-        this.props.updateUserName({type: "SET_USER", user: "test"});
-    }
 
     render() {
         const {store} = this.props;
@@ -19,7 +15,9 @@ class gridContainer extends React.Component{
         return (
             <div>
                 <h1>{name}</h1>
-                <GridComponent store={store}/>
+                <GridComponent
+                    game={this.props.game}
+                />
             </div>
             )
     }
@@ -34,7 +32,9 @@ const mapStateToProps = (state) => {
 
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({updateUserName:UpdateUserName}, dispatch);
+    return bindActionCreators({
+        updateUserName:UpdateUserName
+    }, dispatch);
 };
 
 

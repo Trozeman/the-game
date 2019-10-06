@@ -15,7 +15,7 @@
 
 }
 
-button{
+button, .name{
     margin-top: 20px;
     padding: 2px 8px;
     background-color: hsl(0,0%,100%);

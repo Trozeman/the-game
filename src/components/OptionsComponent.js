@@ -11,9 +11,13 @@ class optionsComponent extends React.Component{
     };
 
     handleSize = (selectedOption) => {
-        this.props.setGameSize({ selectedOption });
-        console.log(`Option selected:`, selectedOption);
+        this.props.setGameSize( +selectedOption.value );
     };
+    handleName = (event) => {
+        this.props.setUserName( event.target.value);
+        console.log(`Option :`, event.target.value);
+    };
+
 
     render() {
         const diff = [
@@ -49,6 +53,14 @@ class optionsComponent extends React.Component{
                         onChange ={this.handleSize}
                     />
                 </label>
+                <label>
+                    Name:
+                    <input
+                        className={'name'}
+                        type="text"
+                       onChange ={this.handleName}
+                    />
+                </label>
 
                 <button onClick={this.startLoop}>
                     Start
@@ -57,5 +69,7 @@ class optionsComponent extends React.Component{
         );
     }
 }
+
+
 
 export default optionsComponent;

@@ -9,13 +9,15 @@ const gameReducer = (state = {}, action) => {
                 onProgress: action.progress
             };
         case 'SET_USER':
-            console.log( {
-                ...state,
-                user: action.user,
-            }, "new");
             return {
                 ...state,
                 user: action.user
+            };
+        case 'SET_BORD_SIZE':
+            console.log(action);
+            return {
+                ...state,
+                size: action.size
             };
         case 'GAME_OVER':
             return {
@@ -28,7 +30,7 @@ const gameReducer = (state = {}, action) => {
 };
 
 
-const startGame = (state, action) => ({
+/*const startGame = (state, action) => ({
     ...state,
     game: {
         user: '',
@@ -36,7 +38,7 @@ const startGame = (state, action) => ({
         difficulty: action.difficulty,
         onProgress: action.progress
     }
-});
+});*/
 
 
 export default gameReducer;
