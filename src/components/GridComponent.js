@@ -5,13 +5,12 @@ import Options from "../containers/OptionsContainer";
 
 
 class Game extends React.Component {
-    timeout = 500;
 
     cells = (i) => {
         let cells = [];
 
         for (let q = i * this.props.game.size; q < (this.props.game.size * i) + this.props.game.size; q++) {
-            cells.push(<Cell key={q} index={q+1}/>);
+            cells.push(<Cell key={q} index={q + 1}/>);
         }
         return cells;
     };
@@ -25,25 +24,6 @@ class Game extends React.Component {
                 </Rows>);
         }
         return rows;
-    };
-
-    handleDrawer = (index) => {
-        // this.props.store.dispatch({type: 'SET_ACTIVE_CELL', index});
-    };
-
-    startLoop = () => {
-        this.gameLoop = setInterval(
-            () => {
-                let q = Math.floor(Math.random() * this.grid.length);
-                this.handleDrawer(this.grid[q]);
-                this.grid.splice(q, 1);
-                console.log(this.grid);
-            }
-            , this.timeout);
-
-        setTimeout(() => {
-            clearInterval(this.gameLoop);
-        }, 500 * 9);
     };
 
     render() {
@@ -73,7 +53,6 @@ const mapStateToProps = (state) => {
         data: state
     });
 };
-
 
 
 export default connect(mapStateToProps, null)(Game);
