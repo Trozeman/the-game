@@ -22,7 +22,7 @@ class gameContainer extends React.Component {
                     return clearInterval(this.timer);
                 }
                 this.props.setActiveCell({type: "SET_ACTIVE_CELL", index: this.controller.cell()});
-            }, 1000);
+            }, this.props.game.difficulty);
         }
     };
 
