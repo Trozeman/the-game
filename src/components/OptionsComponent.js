@@ -23,7 +23,7 @@ class optionsComponent extends React.Component {
 
     OptionsComponent = (status) => {
 
-        const delay = [];
+        let  delay = [];
 
         const labels = [
             'Baby',
@@ -36,8 +36,8 @@ class optionsComponent extends React.Component {
         const size = [];
 
         if (this.props.delay) {
-            this.props.delay.map((value, index)=>{
-                delay.push({value: "" + value, label: labels[index]});
+            delay =  this.props.delay.map((value, index)=>{
+               return  {value: "" + value, label: labels[index]};
             });
         }
 
