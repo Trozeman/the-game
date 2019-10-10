@@ -26,6 +26,8 @@ class gridContainer extends React.Component {
         }
     };
 
+
+
     render() {
         this.controller.setup(this.props.game.size);
         const {user} = this.props.game;
@@ -37,7 +39,7 @@ class gridContainer extends React.Component {
                     game={this.props.game}
                 />
             </div>
-        )
+        );
     }
 }
 

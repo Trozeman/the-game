@@ -4,21 +4,24 @@ import Select from "react-select";
 
 class optionsComponent extends React.Component {
 
+    constructor(props) {
+        super(props);
+    }
+
+    // TODO action creators
 
     handleDifficulty = (selectedOption) => {
-        this.props.setDifficulty(+selectedOption.value);
-        console.log(`Option selected:`, selectedOption);
+        this.props.updateGameDiff({type: "SET_GAME_DIFFICULTY", difficulty: +selectedOption.value});
     };
     handleSize = (selectedOption) => {
-        this.props.setGameSize(+selectedOption.value);
+        this.props.updateBordSize({type: "SET_BORD_SIZE", size: +selectedOption.value});
     };
     handleName = (event) => {
-        this.props.setUserName(event.target.value);
+        this.props.updateUserName({type: "SET_USER", user: event.target.value});
     };
     handleStart = () => {
-        this.props.startGame(true);
+        this.props.startGame({type: "START_GAME", onProgress: true});
     };
-
 
     OptionsComponent = (status) => {
 
@@ -29,47 +32,49 @@ class optionsComponent extends React.Component {
             {value: '4', label: 'Brutal'},
             {value: '5', label: 'Impossible'},
         ];
-        const size = [
-            {value: '3', label: '3'},
-            {value: '5', label: '5'},
-            {value: '7', label: '7'},
-            {value: '9', label: '9'},
-        ];
+        const size = [];
 
-        if (status) return (<></>);
-        return (<div className={'wrapper'}>
-            <label>
-                Select difficulty:
+        if (this.props.field) {
+            this.props.field.forEach((value)=>{
+                size.push({value: "" + value, label: "" + value});
+            });
+        }
 
-                <Select
-                    options={diff}
-                    onChange={this.handleDifficulty}
-                />
-            </label>
-            <label>
-                Select grid size:
-
-                <Select
-                    options={size}
-                    onChange={this.handleSize}
-                />
-            </label>
-            <label>
-                Name:
-                <input
-                    className={'name'}
-                    type="text"
-                    onChange={this.handleName}
-                />
-            </label>
-
-            <button onClick={this.handleStart}>
-                Start
-            </button>
-        </div>)
+        if (status) {
+            return (<></>)
+        } else {
+            return (<div className={'wrapper'}>
+                <label>
+                    Select difficulty:
+                    <Select
+                        options={diff}
+                        onChange={this.handleDifficulty}
+                    />
+                </label>
+                <label>
+                    Select grid size:
+                    <Select
+                        options={size}
+                        onChange={this.handleSize}
+                    />
+                </label>
+                <label>
+                    Name:
+                    <input
+                        className={'name'}
+                        type="text"
+                        onChange={this.handleName}
+                    />
+                </label>
+                <button onClick={this.handleStart}>
+                    Start
+                </button>
+            </div>)
+        }
     };
 
     render() {
+        console.log(this.props.gameStatus);
         return (
             this.OptionsComponent(this.props.gameStatus)
         );
