@@ -31,7 +31,7 @@ class DB {
 const initialData = {
     options: {
         field: [3, 5, 7, 9],
-        delay: [1000, 700, 500, 300]
+        delay: [1000, 800, 600, 400]
     },
     players: [
         {

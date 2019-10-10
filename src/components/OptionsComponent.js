@@ -23,14 +23,23 @@ class optionsComponent extends React.Component {
 
     OptionsComponent = (status) => {
 
-        const diff = [
-            {value: '1', label: 'Baby'},
-            {value: '2', label: 'Schoolboy'},
-            {value: '3', label: 'Rock'},
-            {value: '4', label: 'Brutal'},
-            {value: '5', label: 'Impossible'},
+        const delay = [];
+
+        const labels = [
+            'Baby',
+            'Schoolboy',
+            'Rock',
+            'Brutal',
+            'Impossible',
         ];
+
         const size = [];
+
+        if (this.props.delay) {
+            this.props.delay.map((value, index)=>{
+                delay.push({value: "" + value, label: labels[index]});
+            });
+        }
 
         if (this.props.field) {
             this.props.field.forEach((value)=>{
@@ -45,7 +54,7 @@ class optionsComponent extends React.Component {
                 <label>
                     Select difficulty:
                     <Select
-                        options={diff}
+                        options={delay}
                         onChange={this.handleDifficulty}
                     />
                 </label>
