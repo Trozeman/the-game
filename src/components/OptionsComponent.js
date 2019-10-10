@@ -4,12 +4,6 @@ import Select from "react-select";
 
 class optionsComponent extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
-    // TODO action creators
-
     handleDifficulty = (selectedOption) => {
         this.props.updateGameDiff({type: "SET_GAME_DIFFICULTY", difficulty: +selectedOption.value});
     };
@@ -20,6 +14,10 @@ class optionsComponent extends React.Component {
         this.props.updateUserName({type: "SET_USER", user: event.target.value});
     };
     handleStart = () => {
+        if (this.props.playerName.length < 3) {
+            alert("Please write your name! \n That must have 3 symbols or more \n 😉");
+            return
+        }
         this.props.startGame({type: "START_GAME", onProgress: true});
     };
 
@@ -63,6 +61,8 @@ class optionsComponent extends React.Component {
                     <input
                         className={'name'}
                         type="text"
+                        value={this.props.playerName}
+                        placeholder={"Your mane..."}
                         onChange={this.handleName}
                     />
                 </label>
@@ -74,7 +74,6 @@ class optionsComponent extends React.Component {
     };
 
     render() {
-        console.log(this.props.gameStatus);
         return (
             this.OptionsComponent(this.props.gameStatus)
         );

@@ -7,6 +7,9 @@ const gameReducer = (state = {}, action) => {
                 onProgress: action.onProgress
             };
         case 'SET_USER':
+            if (action.user.length >= 15){
+                return {...state}
+            }
             return {
                 ...state,
                 user: action.user

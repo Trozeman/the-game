@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import GridContainer from './containers/GridContainer';
+import GameContainer from './containers/GameContainer';
 import configureStore from './store';
 import {Provider} from 'react-redux';
 
@@ -26,7 +26,7 @@ function App() {
 
     return (
         <Provider store={store}>
-            <GridContainer />
+            <GameContainer />
         </Provider>
     );
 }

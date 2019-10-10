@@ -1,12 +1,12 @@
 import React from 'react';
-import GridComponent from "../components/GridComponent";
+import GridComponent from "../components/GameComponent";
 import {UpdateUserName, UpdateActiveCell} from "../store/actions/GameActions"
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import GameController from '../game-controller'
 
 
-class gridContainer extends React.Component {
+class gameContainer extends React.Component {
 
     constructor(props) {
         super(props);
@@ -58,4 +58,4 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(gridContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(gameContainer);

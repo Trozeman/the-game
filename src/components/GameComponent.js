@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Cell from "./CellComponent";
-import Options from "../containers/OptionsContainer";
+import OptionsContainer from "../containers/OptionsContainer";
 
 
 class Game extends React.Component {
@@ -32,7 +32,7 @@ class Game extends React.Component {
                 <div className={'game--wrapper'}>
                     {this.rows()}
                 </div>
-                <Options/>
+                <OptionsContainer playerName={this.props.game.user} />
             </div>
         );
     }
