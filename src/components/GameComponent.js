@@ -1,16 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Cell from "./CellComponent";
+import Cell from "../containers/CellContainer";
 import OptionsContainer from "../containers/OptionsContainer";
 
 
 class Game extends React.Component {
-
     cells = (i) => {
         let cells = [];
-
         for (let q = i * this.props.game.size; q < (this.props.game.size * i) + this.props.game.size; q++) {
-            cells.push(<Cell key={q} index={q + 1}/>);
+            cells.push(<Cell key={q} index={q + 1} timeout={this.props.game.difficulty} />);
         }
         return cells;
     };
@@ -32,7 +30,7 @@ class Game extends React.Component {
                 <div className={'game--wrapper'}>
                     {this.rows()}
                 </div>
-                <OptionsContainer playerName={this.props.game.user} />
+                <OptionsContainer playerName={this.props.game.user}/>
             </div>
         );
     }

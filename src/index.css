@@ -30,7 +30,10 @@ code {
 .row *{
   background: #cecece;
 }
-h1 {
+h1{
+  text-align: center;
+}
+.cell {
   padding: 10px;
   margin: 3px;
   min-width: 60px;

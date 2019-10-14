@@ -3,12 +3,12 @@ const ScoreReducer = (state = {}, action) => {
         case 'SCORE_TO_PLAYER':
             return {
                 ...state,
-                player: state.player++
+                player: ++state.player
             };
         case 'SCORE_TO_CPU':
             return {
                 ...state,
-                cpu: state.cpu++
+                cpu: ++state.cpu
             };
         case 'REFRESH_SCORE':
             return {

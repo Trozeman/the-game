@@ -9,7 +9,7 @@ const initialState = {
         user: '',
         size: 0,
         difficulty: null,
-        onProgress: false
+        onProgress: false,
     },
     activeCell: null,
     score: {
