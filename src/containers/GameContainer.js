@@ -12,14 +12,24 @@ class gameContainer extends React.Component {
         super(props);
         this.timer = null;
         this.controller = new GameController();
-
     }
 
     startLoop = () => {
         if (this.props.game.onProgress) {
             this.timer = setInterval(() => {
+                if ((this.props.game.size * this.props.game.size) / 2 <= this.props.score.cpu) {
+                    //TODO set winner
+                    clearInterval(this.timer);
+                    return this.timer = null;
+                }
+                if ((this.props.game.size * this.props.game.size) / 2 <= this.props.score.player) {
+                    //TODO set winner
+                    clearInterval(this.timer);
+                    return this.timer = null;
+                }
                 if (this.controller.cellsIndexes.length <= 0) {
-                    return clearInterval(this.timer);
+                    clearInterval(this.timer);
+                    return this.timer = null;
                 }
                 this.props.setActiveCell({type: "SET_ACTIVE_CELL", index: this.controller.cell()});
             }, this.props.game.difficulty);
@@ -28,10 +38,13 @@ class gameContainer extends React.Component {
 
 
 
+
     render() {
-        this.controller.setup(this.props.game.size);
+        if (!this.timer) {
+            this.controller.setup(this.props.game.size);
+            this.startLoop();
+        }
         const {user} = this.props.game;
-        this.startLoop();
         return (
             <div>
                 <h1>{user}</h1>
@@ -46,6 +59,7 @@ class gameContainer extends React.Component {
 const mapStateToProps = (state) => {
     return ({
         game: state.game,
+        score: state.score,
     });
 };
 
