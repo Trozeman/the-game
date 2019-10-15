@@ -8,22 +8,15 @@ import {Cell} from '../components/CellComponent';
 
 class CellContainer extends React.Component {
     timeout = null;
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            active: false,
-        }
-    }
-
+    winner = null;
     getStyle() {
         let state = '';
         if (this.props.cell && this.props.cell === this.props.index) {
             state = 'ready'
         } else {
-            if (this.state.winner) {
+            if (this.winner) {
                 clearTimeout(this.timeout);
-                switch (this.state.winner) {
+                switch (this.winner) {
                     case 'player': {
                         state = 'player';
                         break;
@@ -41,7 +34,7 @@ class CellContainer extends React.Component {
     checkStep = () => {
         if (this.props.cell === this.props.index) {
             this.props.playerPoint();
-            this.setState({ready: false, winner: 'player'});
+            this.winner = 'player';
             clearTimeout(this.timeout);
 
         }
@@ -49,9 +42,9 @@ class CellContainer extends React.Component {
 
 
     render() {
-        if (this.props.cell === this.props.index && !this.state.ready) {
+        if (this.props.cell === this.props.index) {
             this.timeout = setTimeout(() => {
-                this.setState({ready: false, winner: 'cpu'});
+                this.winner = 'cpu';
                 this.props.CPUPoint();
                 clearTimeout(this.timeout);
             }, this.props.timeout);

@@ -5,20 +5,20 @@ import Select from "react-select";
 class optionsComponent extends React.Component {
 
     handleDifficulty = (selectedOption) => {
-        this.props.updateGameDiff({type: "SET_GAME_DIFFICULTY", difficulty: +selectedOption.value});
+        this.props.updateGameDiff({difficulty: +selectedOption.value});
     };
     handleSize = (selectedOption) => {
-        this.props.updateBordSize({type: "SET_BORD_SIZE", size: +selectedOption.value});
+        this.props.updateBordSize({ size: +selectedOption.value});
     };
     handleName = (event) => {
-        this.props.updateUserName({type: "SET_USER", user: event.target.value});
+        this.props.updateUserName({ user: event.target.value});
     };
     handleStart = () => {
         if (this.props.playerName.length < 3) {
             alert("Please write your name! \n That must have 3 symbols or more \n 😉");
             return
         }
-        this.props.startGame({type: "START_GAME", onProgress: true});
+        this.props.startGame({ onProgress: true});
     };
 
     OptionsComponent = (status) => {

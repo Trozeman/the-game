@@ -4,19 +4,17 @@
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
-    background: rgba(20, 20, 20, 0.6);
+    background: rgb(228, 228, 228);
+    border-radius: 7px;
+    border: solid 2px #d3814a;
+    box-shadow: 0 0 10px #282c34;
     padding: 20px;
     font-size: 20px;
     flex-direction: column;
 }
-.wrapper--input{
-
-}
 
 .error {
     background-color: red;
-    /*background: rgba(20, 20, 20, 0.6);*/
-
 }
 
 button{
@@ -38,4 +36,7 @@ button, .name{
     min-height: 38px;
     font-size: 20px;
     outline: 0 !important;
+}
+.name{
+    margin-top: 0;
 }

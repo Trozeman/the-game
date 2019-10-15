@@ -7,17 +7,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
 
 .game{
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  min-height: 100vh;
+  min-height: calc(100vh - 45px);
   position: relative;
 }
 .game--wrapper{
@@ -30,8 +26,21 @@ code {
 .row *{
   background: #cecece;
 }
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  box-shadow: 0 0 1px #282c34;
+}
+.header button{
+  margin: 0;
+}
 h1{
   text-align: center;
+  min-height: 45px;
+  padding: 0;
+  margin: 0;
 }
 .cell {
   padding: 10px;
@@ -39,16 +48,115 @@ h1{
   min-width: 60px;
   min-height: 60px;
   text-align: center;
+  transform: scale(1);
+  transition: all 0.3s ease;
 }
 .cpu {
+  animation: to-grow 0.3s;
   background: red;
-
 }
 .player {
+  animation: to-grow 0.3s;
   background: green;
-
 }
 .ready {
+  animation: to-small 0.3s;
   background: blue;
   cursor: pointer;
+}
+
+.lose {
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  transform: translate(-50%);
+  border-radius: 5px;
+  background: #d3814a;
+  font-size: 1.5em;
+  padding: 5px;
+  margin: 0;
+}
+.won {
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  transform: translate(-50%);
+  border-radius: 5px;
+  background: #7ee263;
+  font-size: 1.5em;
+  padding: 5px;
+  margin: 0;
+}
+
+
+.leader-bord{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80vh;
+  height: 80vh;
+  background: #ececec;
+  border-radius: 6px;
+  border: solid 2px #d3814a;
+  font-size: 2em;
+}
+
+.leader-bord ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.leader-bord .load{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 0;
+  margin: 0;
+  font-size: 2em;
+  transform: translate(-50%, -50%);
+}
+
+.leader-bord li{
+  list-style: none;
+  padding: 8px 12px;
+}
+
+.leader-bord span{
+  float: right;
+}
+.leader-bord button{
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  padding: 12px 18px;
+  transform: translate(-50%);
+}
+.leader-bord button:hover {
+  background: #d3814a;
+  border-color: #d3ae41;
+}
+
+@keyframes to-small {
+  0% {
+    transform: scale(1.2);
+  }
+  50%{
+    transform: scale(0.8) rotate(5deg);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+@keyframes to-grow {
+  0% {
+    transform: scale(0.8);
+  }
+  50%{
+    transform: scale(1.2) rotate(-5deg);
+  }
+  100%{
+    transform: scale(1);
+  }
 }

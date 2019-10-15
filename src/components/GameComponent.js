@@ -1,5 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import Cell from "../containers/CellContainer";
 import OptionsContainer from "../containers/OptionsContainer";
 
@@ -46,11 +45,4 @@ const Rows = (props) => {
 };
 
 
-const mapStateToProps = (state) => {
-    return ({
-        data: state
-    });
-};
-
-
-export default connect(mapStateToProps, null)(Game);
+export default Game;

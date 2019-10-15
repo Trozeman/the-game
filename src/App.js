@@ -20,8 +20,6 @@ const initialState = {
 
 const store = configureStore(initialState);
 
-window.store = store;
-
 function App() {
 
     return (
